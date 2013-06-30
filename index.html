@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>Game of Life</title>
+	<!-- Load JavaScript	-->	
+	<script type="text/javascript" src="lib/crafty.js"></script>
+	<script type="text/javascript" src="lib/jquery.min.js"></script>
+	<script type="text/javascript" src="src/game.js"></script>
+	<script type="text/javascript" src="src/components.js"></script>
+  <script>
+  	var InitMenu;
+		window.addEventListener('load', function(){
+    	// Start the game
+    	Game.start();
+    	InitMenu();
+    });
+    $(function() {
+	    $(document).mousedown(function(e){
+	        // Left mouse button was pressed, set flag
+	        if(e.which === 1) Game.isEditing = true;
+	    });
+	    $(document).mouseup(function(e){
+	        // Left mouse button was released, clear flag
+	        if(e.which === 1) Game.isEditing = false;
+	    });
+	    
+	    function tweakMouseMoveEvent(e){
+	        // Check from jQuery UI for IE versions < 9
+	        try {
+		        if ($.browser.msie && !(document.documentMode >= 9) && !event.button) {
+		            Game.isEditing = false;
+		        }
+	      	} catch(e) {/*Ignore the exception*/}
+	    }
+
+	    $(document).mousemove(function(e) {
+	        tweakMouseMoveEvent(e);
+	    });
+		});
+		var InitMenu = function() {
+			$("body").append($("<ul id='menuList'\>"));
+			InitPlayButton();
+		};
+		var InitPlayButton = function() {
+			var playButton = $("<button id='playButton'\>");
+			$('#menuList').append($(playButton));
+			$('#playButton').attr('onclick', 'PlayGame();');
+			$('#playButton').html('Play');
+
+		}
+
+    var loopId;
+		var PlayGame = function() {
+			Game.update();
+			loopId = window.setInterval(Game.update, 500);
+			$('#playButton').attr('onclick', 'StopGame();');
+			$('#playButton').html('Stop');
+		};
+		var StopGame = function() {
+			clearInterval(loopId);
+			$('#playButton').attr('onclick', 'PlayGame();');
+			$('#playButton').html('Play');
+		}
+
+  </script>
+
+</head>
+<body>
+
+
+</body>
+</html>
