@@ -49,17 +49,12 @@ Crafty.c('Cell', {
   },
   // called to bring a cell to life
   live: function() {
-    // set the cell state
-    this.attr("state", 1);
-
     // set the cell color
     this.color('green')
   },
   die: function() {
-    // set the cell state
-    this.attr("state", -1);
     // set the cell color
-    this.color('rgb(255, 255, 255)')    
+    this.color('white')    
   }
 });
 

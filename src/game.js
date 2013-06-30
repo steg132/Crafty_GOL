@@ -31,7 +31,7 @@ Game = {
   start: function() {
     // Start crafty and set a background color so that we can see it's working
     Crafty.init(Game.width(), Game.height());
-    Crafty.background('rgb(0, 0, 0)'); 
+    Crafty.background('black'); 
  
     // Place a tree at every edge square on our grid of 16x16 tiles
     for (var x = 0; x < Game.map_grid.width; x++) {
