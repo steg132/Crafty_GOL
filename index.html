@@ -9,10 +9,21 @@
   <script>
   	var InitMenu;
 		window.addEventListener('load', function(){
-    	// Start the game
-    	Game.start();
+			// read parameters
+			var width = parseInt(qs('width'));
+			var height = parseInt(qs('height'));
+			if ( width && height )
+				Game.start(width, height);
+			else
+	    	// Start the game
+    		Game.start();
     	InitMenu();
     });
+    function qs(key) {
+	    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+    	var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+    	return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+		}
     $(function() {
 	    $(document).mousedown(function(e){
 	        // Left mouse button was pressed, set flag
