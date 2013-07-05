@@ -47,7 +47,7 @@ Game = {
       for (var y = 0; y < Game.map_grid.height; y++) {
         var at_edge = x == 0 || x == Game.map_grid.width - 1 || y == 0 || y == Game.map_grid.height - 1;
         // Place a bush entity at the current tile
-        var cell = Crafty.e('Cell').at(x, y);
+        var cell = Crafty.e('ClickableCell').at(x, y);
         var rand = Math.random();
         if ( rand < 0.05) {
           cell.live();

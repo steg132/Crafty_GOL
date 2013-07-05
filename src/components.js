@@ -32,20 +32,8 @@ Crafty.c('Actor', {
 // 
 Crafty.c('Cell', {
   init: function() {
-    this.requires('Actor, Color, Mouse')
+    this.requires('Actor, Color')
       .color('white')
-      .bind('MouseOver', function(e){
-        if ( Game.isEditing == true ) {
-          this.live();
-          Game.lifeMap[this.gridPos.x][this.gridPos.y] = 1;
-        }
-      })
-      .bind('Click', function(){
-        this.live();
-        Game.lifeMap[this.gridPos.x][this.gridPos.y] = 1;
-      })
-      .areaMap([0,0], [this.w,0], [this.w, this.h], [0, this.h]);
-
   },
   // called to bring a cell to life
   live: function() {
@@ -58,5 +46,21 @@ Crafty.c('Cell', {
   }
 });
 
+Crafty.c('ClickableCell', {
+  init: function() {
+    this.requires('Cell, Mouse')
+      .bind('MouseOver', function(e){
+        if ( Game.isEditing == true ) {
+          this.live();
+          Game.lifeMap[this.gridPos.x][this.gridPos.y] = 1;
+        }
+      })
+      .bind('Click', function(){
+        this.live();
+        Game.lifeMap[this.gridPos.x][this.gridPos.y] = 1;
+      })
+      .areaMap([0,0], [this.w,0], [this.w, this.h], [0, this.h]);
+  }
+});
 
  
