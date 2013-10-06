@@ -9,19 +9,21 @@
   <script>
   	var InitMenu;
 		window.addEventListener('load', function(){
-			// compute the game offset
-			window.w
+						// read parameters
+			var width = parseInt(qs('width'));
+			var height = parseInt(qs('height'));
+			if ( width && height) {
+				Game.map_grid.height = height;
+				Game.map_grid.width = width;
+			}
+
 		    // compute offset to center grid
 		    Game.map_grid.offset = window.screen.width - 
 		    (Game.map_grid.width * Game.map_grid.tile.width +
 		    Game.map_grid.margin * (Game.map_grid.width + 1));
 		    Game.map_grid.offset = Game.map_grid.offset / 2;
-			// read parameters
-			var width = parseInt(qs('width'));
-			var height = parseInt(qs('height'));
-			if ( width && height )
-				Game.start(width, height);
-			else
+
+
 	    	// Start the game
     		Game.start();
     	InitMenu();

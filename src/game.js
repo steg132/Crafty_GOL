@@ -41,14 +41,8 @@ Game = {
     Crafty.init(Game.width(), Game.height() + Game.startButtonHeight);
     Crafty.background('black'); 
  
-    // compute offset to center grid
-    Game.map_grid.offset = Crafty.viewport.width - 
-    (Game.map_grid.width * Game.map_grid.tile.width +
-    Game.map_grid.margin * (Game.map_grid.width + 1));
-    Game.map_grid.offset = Game.map_grid.offset / 2;
     // Place a tree at every edge square on our grid of 16x16 tiles
     for (var x = 0; x < Game.map_grid.width; x++) {
-
       var cellRow = [];
       var lifeRow = [];
       for (var y = 0; y < Game.map_grid.height; y++) {
