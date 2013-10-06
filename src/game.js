@@ -27,6 +27,7 @@ Game = {
     return this.map_grid.height * this.map_grid.tile.height
     + (1 + this.map_grid.height) * this.map_grid.margin;
   },
+  startButtonHeight: 30,
 
  
   // Initialize and start our game
@@ -36,7 +37,7 @@ Game = {
       Game.map_grid.height = h;
     }
     // Start crafty and set a background color so that we can see it's working
-    Crafty.init(Game.width(), Game.height());
+    Crafty.init(Game.width(), Game.height() + Game.startButtonHeight);
     Crafty.background('black'); 
  
     // Place a tree at every edge square on our grid of 16x16 tiles
@@ -66,6 +67,10 @@ Game = {
       Game.cellMap.push(cellRow);
       Game.lifeMap.push(lifeRow);
     }
+
+    // add a start/pause button
+    Crafty.e("StartButton")
+    .at(0, Game.height());
   },
 
   generationCount: 0,

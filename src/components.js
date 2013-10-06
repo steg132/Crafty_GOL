@@ -28,6 +28,39 @@ Crafty.c('Actor', {
     this.requires('2D, DOM, Grid');
   },
 });
+
+Crafty.c('StartButton', {
+  state: 0,
+  init: function() {
+    this.requires('2D, DOM, Text, Mouse')
+    .text("Start")
+    .textFont( { size: '20px', weight: 'bold' })
+    .unselectable()
+    .textColor('#FFFFFF')
+    //.background("#000000")
+    .attr({w:Game.width()})
+    .css("text-align", "center")
+    .bind("Click", function() {
+      if ( this.state == 0 ){
+        this.state = 1;
+        this.text("Stop");
+        // start the game
+        PlayGame();
+      } else {
+        // stop the game
+        this.state = 0;
+        this.text("Start");
+        StopGame();
+      }
+    })
+    .areaMap([0,0], [Game.width(),0], 
+      [Game.width(), Game.startButtonHeight], 
+      [0, Game.startButtonHeight]);
+  },
+  at: function(x, y) {
+    this.attr({x:x, y:y});
+  }
+});
  
 // 
 Crafty.c('Cell', {
