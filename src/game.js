@@ -4,11 +4,14 @@ Game = {
     width:  20,
     height: 20,
     tile: {
-      width:  8,
-      height: 8
+      width:  12,
+      height: 12
     },
-    margin: 1
+    margin: 1,
+    offset: 0
   },
+  startButtonHeight: 30,
+
   // This is a 2 dimentional array where game cells will be stored
   cellMap:[],
   // This is a 2 dimentional array 
@@ -27,8 +30,6 @@ Game = {
     return this.map_grid.height * this.map_grid.tile.height
     + (1 + this.map_grid.height) * this.map_grid.margin;
   },
-  startButtonHeight: 30,
-
  
   // Initialize and start our game
   start: function(w, h) {
@@ -40,6 +41,11 @@ Game = {
     Crafty.init(Game.width(), Game.height() + Game.startButtonHeight);
     Crafty.background('black'); 
  
+    // compute offset to center grid
+    Game.map_grid.offset = Crafty.viewport.width - 
+    (Game.map_grid.width * Game.map_grid.tile.width +
+    Game.map_grid.margin * (Game.map_grid.width + 1));
+    Game.map_grid.offset = Game.map_grid.offset / 2;
     // Place a tree at every edge square on our grid of 16x16 tiles
     for (var x = 0; x < Game.map_grid.width; x++) {
 
@@ -70,7 +76,7 @@ Game = {
 
     // add a start/pause button
     Crafty.e("StartButton")
-    .at(0, Game.height());
+    .at(Game.map_grid.offset, Game.height());
   },
 
   generationCount: 0,

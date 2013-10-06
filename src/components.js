@@ -11,9 +11,9 @@ Crafty.c('Grid', {
   // Locate this entity at the given position on the grid
   at: function(x, y) {
     if (x === undefined && y === undefined) {
-      return { x: this.x/Game.map_grid.tile.width, y: this.y/Game.map_grid.tile.height }
+      return { x: (this.x - Game.map_grid.offset) / Game.map_grid.tile.width, y: this.y/Game.map_grid.tile.height }
     } else {
-      this.attr({ x: x * (Game.map_grid.tile.width + Game.map_grid.margin) + Game.map_grid.margin, 
+      this.attr({ x: (x * (Game.map_grid.tile.width + Game.map_grid.margin) + Game.map_grid.margin) + Game.map_grid.offset, 
         y: y * (Game.map_grid.tile.height + Game.map_grid.margin) + Game.map_grid.margin });
       this.attr({gridPos:{x:x, y:y}});
       return this;
