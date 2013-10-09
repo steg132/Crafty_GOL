@@ -30,6 +30,18 @@ Game = {
     return this.map_grid.height * this.map_grid.tile.height
     + (1 + this.map_grid.height) * this.map_grid.margin;
   },
+
+  calcOffset: function() {
+    var width = window.innerWidth;
+    if ( Crafty.viewport.width < width)
+      width = Crafty.viewport.width;
+      // compute offset to center grid
+    Game.map_grid.offset = width - 
+    (Game.map_grid.width * Game.map_grid.tile.width +
+    Game.map_grid.margin * (Game.map_grid.width + 1));
+    Game.map_grid.offset = Game.map_grid.offset / 2;
+
+  },
  
   // Initialize and start our game
   start: function(w, h) {
@@ -40,6 +52,8 @@ Game = {
     // Start crafty and set a background color so that we can see it's working
     Crafty.init(Game.width(), Game.height() + Game.startButtonHeight);
     Crafty.background('black'); 
+
+    this.calcOffset();
  
     // Place a tree at every edge square on our grid of 16x16 tiles
     for (var x = 0; x < Game.map_grid.width; x++) {

@@ -17,13 +17,6 @@
 				Game.map_grid.width = width;
 			}
 
-		    // compute offset to center grid
-		    Game.map_grid.offset = window.screen.width - 
-		    (Game.map_grid.width * Game.map_grid.tile.width +
-		    Game.map_grid.margin * (Game.map_grid.width + 1));
-		    Game.map_grid.offset = Game.map_grid.offset / 2;
-
-
 	    	// Start the game
     		Game.start();
     	InitMenu();
